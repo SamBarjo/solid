@@ -13,6 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class CarPriceCalculatorTest {
 
     private static final int POLLUTION_TAX = 1000;
+    private static final int NO_POLLUTION_TAX = 0;
 
     @InjectMocks
     private CarPriceCalculator calculator;
@@ -20,7 +21,7 @@ public class CarPriceCalculatorTest {
     @Test
     public void hummerHasAPollutionTax() {
         final int hummerPrice = 50000;
-        Car hummer = createCarMock(Hummer.class, hummerPrice);
+        Car hummer = createCarMock(Hummer.class, hummerPrice, POLLUTION_TAX);
 
         int totalPrice = calculator.calculatePrice(hummer);
 
@@ -30,16 +31,27 @@ public class CarPriceCalculatorTest {
     @Test
     public void yarisHasNoPollutionTax() {
         final int yarisPrice = 20000;
-        Car yaris = createCarMock(Yaris.class, yarisPrice);
+        Car yaris = createCarMock(Yaris.class, yarisPrice, NO_POLLUTION_TAX);
 
         int totalPrice = calculator.calculatePrice(yaris);
 
         assertEquals(yarisPrice, totalPrice);
     }
 
-    private Car createCarMock(Class<? extends Car> carType, int price) {
+    @Test
+    public void ecoHummerHasNoPollutionTax() {
+        final int hummerPrice = 50000;
+        Car ecoHummer = createCarMock(EcoHummer.class, hummerPrice, NO_POLLUTION_TAX);
+
+        int totalPrice = calculator.calculatePrice(ecoHummer);
+
+        assertEquals(hummerPrice, totalPrice);
+    }
+
+    private Car createCarMock(Class<? extends Car> carType, int price, int pollutionTax) {
         Car carMock = mock(carType);
         willReturn(price).given(carMock).getPrice();
+        willReturn(pollutionTax).given(carMock).getPollutionTax();
         return carMock;
     }
 

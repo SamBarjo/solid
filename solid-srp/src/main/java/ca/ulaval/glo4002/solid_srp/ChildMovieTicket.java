@@ -4,8 +4,8 @@ public class ChildMovieTicket extends MovieTicket {
 
     private static final float PRICE = 10.0f;
 
-    public ChildMovieTicket() {
-        super(PRICE);
+    public ChildMovieTicket(boolean isStudent) {
+        super(PRICE, isStudent);
     }
 
 }

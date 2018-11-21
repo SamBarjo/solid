@@ -11,11 +11,13 @@ public class MovieTicketService {
 
     // TODO add : a flag to know if this is a student. Apply 10%.
     // TODO add : a flag to know whether the ticket should be printed or not.
-    public void generateMovieTicket(int personAge) {
-        if (personAge <= MAXIMUM_AGE_CHILD_PRICE) {
-            print(new ChildMovieTicket());
-        } else {
-            print(new RegularMovieTicket());
+    public void generateMovieTicket(int personAge, boolean isStudent, boolean printTicket) {
+        if (printTicket) {
+            if (personAge <= MAXIMUM_AGE_CHILD_PRICE) {
+                print(new ChildMovieTicket(isStudent));
+            } else {
+                print(new RegularMovieTicket(isStudent));
+            }
         }
     }
 

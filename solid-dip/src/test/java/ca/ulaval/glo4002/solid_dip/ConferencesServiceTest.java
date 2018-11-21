@@ -2,7 +2,6 @@ package ca.ulaval.glo4002.solid_dip;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
-import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

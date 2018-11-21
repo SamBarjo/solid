@@ -4,7 +4,7 @@ public class RegularMovieTicket extends MovieTicket {
 
     private static final float PRICE = 15.0f;
 
-    public RegularMovieTicket() {
-        super(PRICE);
+    public RegularMovieTicket(boolean isStudent) {
+        super(PRICE, isStudent);
     }
 }
